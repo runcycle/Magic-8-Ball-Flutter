@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 void main() => runApp(
       MaterialApp(
         home: Scaffold(
-          backgroundColor: Colors.blue[300],
+          backgroundColor: Colors.blue[200],
           appBar: AppBar(
             title: Center(
               child: Text('Ask Me Anything ...'),
             ),
-            backgroundColor: Colors.blue[200],
+            backgroundColor: Colors.blue[400],
           ),
           body: EightBallPage(),
         ),
@@ -25,10 +25,25 @@ class _EightBallPageState extends State<EightBallPage> {
   int eightBallAnswer = 1;
 
   void changeAnswer() {
-    eightballAnswer = Random().nextInt(5) + 1;
+    setState(() {
+      eightBallAnswer = Random().nextInt(5) + 1;
+    });
   }
 
   Widget build(BuildContext context) {
-    
+    return Center(
+      child: Row(
+        children: <Widget>[
+          Expanded(
+            child: FlatButton(
+              onPressed: () {
+                changeAnswer();
+              },
+              child: Image.asset('images/ball$eightBallAnswer.png'),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
